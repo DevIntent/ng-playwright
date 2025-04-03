@@ -11,22 +11,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/ng-playwright",
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "browser": "src/main.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -46,12 +39,9 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -60,10 +50,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ng-playwright:build:production"
+              "buildTarget": "ng-playwright:build:production"
             },
             "development": {
-              "browserTarget": "ng-playwright:build:development"
+              "buildTarget": "ng-playwright:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +61,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-playwright:build"
+            "buildTarget": "ng-playwright:build"
           }
         },
         "test": {
@@ -93,9 +83,9 @@
           }
         },
         "e2e": {
-          "builder": "@ngx-playwright/test:run",
+          "builder": "@playwright/test:run",
           "options": {
-            "config": "playwright/playwright.config.ts",
+            "config": "playwright.config.ts",
             "devServerTarget": "serve"
           },
           "configurations": {
